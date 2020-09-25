@@ -1,0 +1,16 @@
+4f03961f5921ba85b1a5c75b6dd1b82f *DESCRIPTION
+1c5a6ecbda153822f5985054e50d4cfb *NAMESPACE
+f1f86132468be3d04841d0beb6090ca6 *R/data.R
+b77c8c6c96f14cf80ccd67ed096ec9b7 *R/r2mlm.R
+12d2a5ee720b59c99d540175ba222d79 *R/r2mlm_comp.R
+2cfa18d0d91c5cbab9e6f8fe008f1da1 *R/r2mlm_comp_manual.R
+7e36c165895e584ef4bf1e434af34da7 *R/r2mlm_manual.R
+7ed966071a1e15628a829d0e6ce436af *README.md
+883057b4b190020797045f19805cc98b *data/teachsat.rda
+ba042f5f2290851c25a3492389050810 *man/figures/README-example-1.png
+1c6ad759e2107c017820769bfabfb238 *man/figures/README-pressure-1.png
+4243ed8abde64b598047d9843629118b *man/r2mlm.Rd
+bf5a5d439b110c3c89a8b2d5b2644a36 *man/r2mlm_comp.Rd
+34cd9831da80f91db9af316cf6e4f5f3 *man/r2mlm_comp_manual.Rd
+7fa14eb2735aeaf8972dc78fcb6362dd *man/r2mlm_manual.Rd
+7d2810c2a2480282c8dfe9fd0624c612 *man/teachsat.Rd
