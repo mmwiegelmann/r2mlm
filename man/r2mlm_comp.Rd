@@ -5,7 +5,7 @@
 \title{Compute R-squared differences between two multilevel models, automatically
 inputting parameter estimates.}
 \usage{
-r2mlm_comp(modelA, modelB, data = NULL)
+r2mlm_comp(modelA, modelB, data = NULL, bargraph = TRUE)
 }
 \arguments{
 \item{modelA, modelB}{Models generated using \code{\link[lme4]{lmer}} or
@@ -17,6 +17,8 @@ will not work.}
 
 \item{data}{Optional argument, only needed if models are not hierarchical.
 Dataset with rows denoting observations and columns denoting variables.}
+
+\item{bargraph}{Optional bar graph output, default is TRUE.}
 }
 \value{
 If the inputs are valid models, then the output will be a list and
@@ -55,7 +57,7 @@ Assumes that both models are fit with lmer or both models are fit with nlme.
 # Using lme4 for your model
 # The "bobyqa" optimizer is required for these particular models to converge
 
-# Model A, no "salary" components included
+\dontrun{ # Model A, no "salary" components included
 
 modelA_lme4 <- lmer(satisfaction ~ 1 + control_c + control_m + s_t_ratio + (1
 + control_c | schoolID), data = teachsat, REML = TRUE, control =
@@ -97,18 +99,18 @@ r2mlm_comp(modelA_nlme, modelB_nlme)
 
 # Compare models, optional data argument specified
 r2mlm_comp(modelA_nlme, modelB_nlme, teachsat)
+}
 
 }
 \seealso{
-\href{https://doi.org/10.1037/met0000184}{Rights, J. D., & Sterba,
-  S. K. (2019). Quantifying explained variance in multilevel models: An
-  integrative framework for defining R-squared measures. Psychological
-  Methods, 24(3), 309–338.}
+Rights, J. D., & Sterba, S. K. (2019). Quantifying explained
+  variance in multilevel models: An integrative framework for defining
+  R-squared measures. Psychological Methods, 24(3), 309–338.
+  <doi:10.1037/met0000184>
 
-\href{https://doi.org/10.1080/00273171.2019.1660605}{Rights, J. D., &
-  Sterba, S. K. (2020). New recommendations on the use of R-squared
-  differences in multilevel model comparisons. Multivariate Behavioral
-  Research.}
+Rights, J. D., & Sterba, S. K. (2020). New recommendations on the
+  use of R-squared differences in multilevel model comparisons. Multivariate
+  Behavioral Research. <doi:10.1080/00273171.2019.1660605>
 
 Other r2mlm model comparison functions: 
 \code{\link{r2mlm_comp_manual}()}

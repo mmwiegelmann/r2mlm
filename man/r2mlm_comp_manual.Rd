@@ -20,7 +20,8 @@ r2mlm_comp_manual(
   gamma_w_modB,
   gamma_b_modB,
   Tau_modB,
-  sigma2_modB
+  sigma2_modB,
+  bargraph = TRUE
 )
 }
 \arguments{
@@ -56,6 +57,8 @@ slope’s variance and covariances (to be entered in the order listed by
 random_covs).}
 
 \item{sigma2_modA, sigma2_modB}{Level-1 residual variance.}
+
+\item{bargraph}{Optional bar graph output, default is TRUE.}
 }
 \value{
 If the inputs are valid models, then the output will be a list and
@@ -110,15 +113,14 @@ Tau_modB = matrix(c(18.548, -0.676, -0.396, -0.676, 1.065, -0.143, -0.396,
 
 }
 \seealso{
-\href{https://doi.org/10.1037/met0000184}{Rights, J. D., & Sterba,
-  S. K. (2019). Quantifying explained variance in multilevel models: An
-  integrative framework for defining R-squared measures. Psychological
-  Methods, 24(3), 309–338.}
+Rights, J. D., & Sterba, S. K. (2019). Quantifying explained
+  variance in multilevel models: An integrative framework for defining
+  R-squared measures. Psychological Methods, 24(3), 309–338.
+  <doi:10.1037/met0000184>
 
-\href{https://doi.org/10.1080/00273171.2019.1660605}{Rights, J. D., &
-  Sterba, S. K. (2020). New recommendations on the use of R-squared
-  differences in multilevel model comparisons. Multivariate Behavioral
-  Research.}
+Rights, J. D., & Sterba, S. K. (2020). New recommendations on the
+  use of R-squared differences in multilevel model comparisons. Multivariate
+  Behavioral Research. <doi:10.1080/00273171.2019.1660605>
 
 Other r2mlm model comparison functions: 
 \code{\link{r2mlm_comp}()}

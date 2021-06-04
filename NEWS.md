@@ -1,3 +1,17 @@
+# r2mlm 0.3.0
+
+## Major Changes
+* Adds two manual functions: one for 3-level models (r2mlm3_manual) and one for models with heteroscedasticity, autocorrelation, nonlinearity, and non-centered-within-cluster models (r2mlm_long_manual)
+* Bar graph output is now optional. The default behaviour is to output bar graphs, but if you don't want graphical output, the argument is `bargraph = FALSE`. For example, `r2mlm(model, bargraph = FALSE)`. (Issue #46)
+
+## Bug Fixes
+* To test whether clusters are mean-centered, the code computes cluster means for all level-1 variables, sees if the means are roughly zero (< .0000001), and if yes then it assigns `clustermeancentered = TRUE`. This update changes the code to test whether the *absolute value* of the means are roughly zero, to address the case in which a cluster has a negative non-zero mean (that would otherwise mistakenly be assigned to `clustermeancentered = TRUE` because the negative number is less than 0.0000001). (Issue #41)
+* Fixes an issue where models with non-cwc interaction terms were returning results as though they were centered-within-cluster. r2mlm returns non-cwc results, r2mlm_comp breaks. (Issue #42)
+* Fixed an error thrown if certain groups only have one unit: "Error in if (variance_tracker == 0) { : missing value where TRUE/FALSE needed." Fixed this (#44).
+
+## Minor Edits
+* Changed simulated data
+
 # r2mlm 0.2.0
 
 ## Major Changes

@@ -12,7 +12,6 @@
 #' R-squared measures from Rights & Sterba (2019) Table 5, as well as bar chart
 #' decompositions are outputted. Any number of level-1 and/or level-2 predictors
 #' is supported. Any of the level-1 predictors can have random slopes.
-
 #'
 #' \code{r2mlm} first determines whether a given model was generated using
 #' \code{\link[lme4]{lmer}} or \code{\link[nlme]{nlme}}, then passes the model
@@ -25,6 +24,7 @@
 #'   fixed_effects + (random_effects | cluster_variable)}. Anything else (e.g.,
 #'   \code{outcome ~ 1 + (random_effects | cluster_variable) + fixed_effects})
 #'   will not work.
+#' @param bargraph Optional bar graph output, default is TRUE.
 #'
 #' @return If the input is a valid model, then the output will be a list and
 #'   associated graphical representation of R-squared decompositions. If the
@@ -53,10 +53,10 @@
 #'
 #' r2mlm(model_nlme)
 #'
-#' @seealso \href{https://doi.org/10.1037/met0000184}{Rights, J. D., & Sterba,
-#'   S. K. (2019). Quantifying explained variance in multilevel models: An
-#'   integrative framework for defining R-squared measures. Psychological
-#'   Methods, 24(3), 309–338.}
+#' @seealso Rights, J. D., & Sterba, S. K. (2019). Quantifying explained
+#'   variance in multilevel models: An integrative framework for defining
+#'   R-squared measures. Psychological Methods, 24(3), 309–338.
+#'   <doi:10.1037/met0000184>
 #'
 #' @family r2mlm single model functions
 #'
@@ -73,7 +73,7 @@
 
 # 1 r2mlm Master Function -------------------------------------------------
 
-r2mlm <- function(model) {
+r2mlm <- function(model, bargraph = TRUE) {
 
   # throw error if model contains higher-order terms
   temp_formula <- formula(model)
@@ -87,9 +87,9 @@ r2mlm <- function(model) {
 
   # call appropriate r2mlm helper function
   if (typeof(model) == "list") {
-    r2mlm_nlme(model)
+    r2mlm_nlme(model, bargraph)
   } else if (typeof(model) == "S4") {
-    r2mlm_lmer(model)
+    r2mlm_lmer(model, bargraph)
   } else {
     stop("You must input a model generated using either the lme4 or nlme package.")
   }
@@ -98,7 +98,7 @@ r2mlm <- function(model) {
 
 # 2 r2mlm_lmer helper function --------------------------------------------
 
-r2mlm_lmer <- function(model) {
+r2mlm_lmer <- function(model, bargraph) {
 
   # Step 1) check if model has_intercept
 
@@ -208,13 +208,13 @@ r2mlm_lmer <- function(model) {
 
   # Step 11) input everything into r2MLM
 
-  r2mlm_manual(as.data.frame(data), within_covs = within, between_covs = between, random_covs = random, gamma_w = gammaw, gamma_b = gammab, Tau = tau, sigma2 = sigma2, has_intercept = has_intercept, clustermeancentered = centeredwithincluster)
+  r2mlm_manual(as.data.frame(data), within_covs = within, between_covs = between, random_covs = random, gamma_w = gammaw, gamma_b = gammab, Tau = tau, sigma2 = sigma2, has_intercept = has_intercept, clustermeancentered = centeredwithincluster, bargraph = bargraph)
 
 }
 
 # 3 r2mlm_nlme helper function --------------------------------------------
 
-r2mlm_nlme <- function(model) {
+r2mlm_nlme <- function(model, bargraph) {
 
   # Step 1) check if model has_intercept
 
@@ -318,7 +318,7 @@ r2mlm_nlme <- function(model) {
 
   # Step 11) input everything into r2mlm
 
-  r2mlm_manual(as.data.frame(data), within_covs = within, between_covs = between, random_covs = random, gamma_w = gammaw, gamma_b = gammab, Tau = tau, sigma2 = sigma2, has_intercept = has_intercept, clustermeancentered = centeredwithincluster)
+  r2mlm_manual(as.data.frame(data), within_covs = within, between_covs = between, random_covs = random, gamma_w = gammaw, gamma_b = gammab, Tau = tau, sigma2 = sigma2, has_intercept = has_intercept, clustermeancentered = centeredwithincluster, bargraph = bargraph)
 
 }
 

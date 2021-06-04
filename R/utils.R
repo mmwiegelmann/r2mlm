@@ -98,7 +98,7 @@ get_cwc <- function(l1_vars, cluster_variable, data) {
     }
 
     # if the biggie sum is essentially zero (not exactly zero, because floating point), then the variable is CWC
-    if (temp_tracker < 0.0000001) {
+    if (abs(temp_tracker) < 0.0000001) {
       centeredwithincluster <- TRUE
     } else {
       centeredwithincluster <- FALSE
@@ -150,7 +150,7 @@ sort_variables <- function(data, predictors, cluster_variable) {
     # var returns NA if group only 1 row. Replace with 0
     counter = 1
 
-    while (counter < length(t)) {
+    while (counter <= length(t)) {
 
       if (is.na(t[[counter]])) {
         t[[counter]] <- 0
